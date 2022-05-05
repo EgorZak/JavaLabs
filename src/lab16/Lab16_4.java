@@ -3,35 +3,47 @@ package lab16;
 import java.util.Scanner;
 
 
-public class Lab16_3 {
+public class Lab16_4 {
     static Scanner scanner = new Scanner(System.in);
 
     //Основная программа
     public static void main(String[] args) {
-        System.out.println("Введите размерность массива: ");
+        System.out.println("Введите размерность");
         int n = scanner.nextInt();
-        int[] testArray = new int[n];
-
-        printArr(fillArr(testArray));
-
+        System.out.println("Введите номер ячейки");
+        int k = scanner.nextInt();
+        int[] Array = new int[n];
+        Array = fillArr(Array);
+        printArr(Array);
+        System.out.println(sum(Array, k));
     }
 
+    //Сумма
+    public static int sum(int[] array, int k) {
+        int sum = 0;
+        for (int i = k; i < array.length; i++) {
+            sum += array[i];
+        }
+
+        return sum;
+    }
     //Заполнение массива
-    public static int[] fillArr(int[] array) {
-        int min = 10;
+    public static int[] fillArr(int[] array)
+    {
+        int min = 0;
         int max = 99;
 
         for (int i = 0; i < array.length; i++) {
-            int rand = min + (int) (Math.random() * (max - min + 1));
-            if (rand / 10 == rand % 10) array[i] = rand;
+            array[i] = min + (int) (Math.random() * (max - min + 1));
         }
 
         return array;
     }
-
-    //Написание массива в консоль
-    public static void printArr(int[] array) {
+//Печать массива
+    public static void printArr(int[] array)
+    {
         for (int i = 0; i < array.length; i++) System.out.print(array[i] + " ");
+        System.out.println();
     }
 }
 

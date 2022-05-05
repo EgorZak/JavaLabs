@@ -1,47 +1,35 @@
 package lab16;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Scanner;
 
 
-public class Lab16_4 {
+public class Lab16_5 {
     static Scanner scanner = new Scanner(System.in);
 
     //Основная программа
     public static void main(String[] args) {
-        System.out.println("Введите размерность");
-        int n = scanner.nextInt();
-        System.out.println("Введите номер ячейки");
-        int k = scanner.nextInt();
-        int[] Array = new int[n];
-        Array = fillArr(Array);
-        printArr(Array);
-        System.out.println(sum(Array, k));
+        int[] testArray = new int[]{1, 2, 99, 98, 97, 96, 95, 94, 93, 1};
+        System.out.println(isSortFromRange(testArray, 2, 8));
+        ;
     }
 
-    //Заполнение массива
-    public static int sum(int[] array, int k) {
-        int sum = 0;
-        for (int i = k; i < array.length; i++) {
-            sum += array[i];
+    public static boolean isSortFromRange(int[] array, int start, int end) {
+        Integer[] arrFromRange = new Integer[end - start + 1];
+
+        int j = 0;
+        for (int i = start; i <= end; i++) {
+            arrFromRange[j] = array[i];
+            j++;
         }
 
-        return sum;
+        Integer[] arrFromRangeCopy = arrFromRange.clone();
+        Arrays.sort(arrFromRange, Collections.reverseOrder());
+        return Arrays.equals(arrFromRange, arrFromRangeCopy);
     }
 
-    public static int[] fillArr(int[] array)
-    {
-        int min = 0;
-        int max = 99;
-
-        for (int i = 0; i < array.length; i++) {
-            array[i] = min + (int) (Math.random() * (max - min + 1));
-        }
-
-        return array;
-    }
-
-    public static void printArr(int[] array)
-    {
+    public static void printArray(Integer[] array) {
         for (int i = 0; i < array.length; i++) System.out.print(array[i] + " ");
         System.out.println();
     }

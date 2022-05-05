@@ -3,50 +3,42 @@ package lab16;
 import java.util.Scanner;
 
 
-public class Lab16_9 {
+public class Lab16_10 {
     static Scanner scanner = new Scanner(System.in);
 
-    //Основная программа
     public static void main(String[] args) {
-        System.out.println("Введите размерность");
-        int n = scanner.nextInt();
-        System.out.println("Введите номер ячейки");
-        int k = scanner.nextInt();
-        int[] Array = new int[n];
-        Array = fillArr(Array);
-        printArr(Array);
-        System.out.println(sum(Array, k));
+        Integer[] testArray = new Integer[] {1,2,3,4};
+        printArray(evenElements(testArray));
+
     }
 
-    //Заполнение массива
-    public static int sum(int[] array, int k) {
-        int sum = 0;
-        for (int i = k; i < array.length; i++) {
-            sum += array[i];
-        }
-
-        return sum;
-    }
-
-    public static int[] fillArr(int[] array)
+    public static Integer[] evenElements(Integer[] array)
     {
-        int min = 0;
-        int max = 99;
+        int evenCount = 0;
 
         for (int i = 0; i < array.length; i++) {
-            array[i] = min + (int) (Math.random() * (max - min + 1));
+            if (array[i] % 2 == 0) evenCount++;
         }
 
-        return array;
+        Integer[] evenArray = new Integer[evenCount];
+
+        int j = 0;
+
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] % 2 == 0) {
+                evenArray[j] = array[i];
+                j++;
+            }
+        }
+
+        return evenArray;
     }
 
-    public static void printArr(int[] array)
+    public static void printArray(Integer[] array)
     {
         for (int i = 0; i < array.length; i++) System.out.print(array[i] + " ");
-        System.out.println();
     }
 }
-
 
 
 

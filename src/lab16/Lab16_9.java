@@ -3,47 +3,36 @@ package lab16;
 import java.util.Scanner;
 
 
-public class Lab16_8 {
+public class Lab16_9 {
     static Scanner scanner = new Scanner(System.in);
 
-    //Основная программа
     public static void main(String[] args) {
-        System.out.println("Введите размерность");
-        int n = scanner.nextInt();
-        System.out.println("Введите номер ячейки");
-        int k = scanner.nextInt();
-        int[] Array = new int[n];
-        Array = fillArr(Array);
-        printArr(Array);
-        System.out.println(sum(Array, k));
+        Integer[] testArray1 = new Integer[] {1, 2, 3, 4};
+        Integer[] testArray2 = new Integer[] {1, 2, 3, 4};
+
+        System.out.println(consistsIn(testArray1, testArray2));
     }
 
-    //Заполнение массива
-    public static int sum(int[] array, int k) {
-        int sum = 0;
-        for (int i = k; i < array.length; i++) {
-            sum += array[i];
+    public static boolean consistsIn(Integer[] array1, Integer[] array2)
+    {
+        boolean result = true;
+
+        for (int i = 0; i < array1.length; i++) {
+            if (!elemExists(array2, array1[i])) result = false;
         }
 
-        return sum;
+        return result;
     }
 
-    public static int[] fillArr(int[] array)
+    public static boolean elemExists(Integer[] array, Integer elem)
     {
-        int min = 0;
-        int max = 99;
+        boolean result = false;
 
         for (int i = 0; i < array.length; i++) {
-            array[i] = min + (int) (Math.random() * (max - min + 1));
+            if (elem == array[i]) result = true;
         }
 
-        return array;
-    }
-
-    public static void printArr(int[] array)
-    {
-        for (int i = 0; i < array.length; i++) System.out.print(array[i] + " ");
-        System.out.println();
+        return result;
     }
 }
 
